@@ -1,0 +1,29 @@
+body {
+  height: 487px;
+  width: 853px;
+  background-repeat: no-repeat;
+  background-size: 853px 487px;
+}
+
+button {
+  margin: 10px;
+  background-color: #D3D3D3;
+  padding: 5px;
+  border-radius: 50px;
+  border: 1px solid grey;
+}
+button:hover {
+  filter: brightness(50%);
+}
+
+.maincontainer {
+  display: flex;
+}
+
+.formcontainer {
+  width: 400px;
+}
+
+.CDbuttons {
+  display: flex;
+}

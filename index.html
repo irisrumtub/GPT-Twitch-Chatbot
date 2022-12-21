@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+<body>
+  <div class="maincontainer">
+  <div class="formcontainer">
+  <h1>Twitch AI chat bot</h1>
+  <p>1. to get OAuth key go to <a id="tmilink" href="#">https://twitchapps.com/tmi/</a>, connect it to twitch and copy the value of oauth key</p>
+  <p>2. to get AI key go to <a id="ailink" href="#">https://beta.openai.com/account/api-keys</a>, press "Create new secret key" and put it into "AI" key here</p>
+  <p style="color:red">DO NOT SHARE THESE KEYS WITH ANYONE!</p>
+  <form id="oauth-form">
+    <label for="username">your username (lowercase)</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="channel">twitch channel name (lowercase)</label><br>
+    <input type="text" id="channel" name="channel"><br>
+    <label for="oauth">oauth key</label><br>
+    <input type="text" id="oauth" name="oauth"><br>
+    <label for="aiKey">AI key.</label><br>
+    <input type="text" id="aiKey" name="aiKey"><br>
+  </form>
+  <div class="CDbuttons">
+  <button value="start" id="submit">connect</button><br>
+  <button value="disconnect" id="disconnect">disconnect</button><br>
+  
+</div>
+<div class="CDbuttons">
+<button id="saveCreds">save credentials</button>
+  <button id="loadCreds">load credentials</button>
+  </div>
+</div>
+<div class="features">
+  
+  <label for="wordlist">Add a csv with words or phrases that you wish not to be passed to the AI</label><br><br><br>
+  
+  <input id="wordlist" type="file" accept=".csv">
+  <button id="addWords">add words to the list</button>
+  <div id="loadComplete"></div>
+</div>
+</div>
+  <script>require('./logic.js')</script>
+  <script>require('./savenload.js')</script>
+  <script>require('./banwords.js')</script>
+</body>
+</html> 
