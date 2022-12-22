@@ -11,7 +11,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let channelName = document.getElementById("channel").value;
     let oauthToken = document.getElementById("oauth").value;
     let aiKey = document.getElementById("aiKey").value;
-    // document.getElementById("submit").disabled = true;
+    document.getElementById("submit").disabled = true;
+    document.getElementById("submit").innerHTML = "connected"
     let username = document.getElementById("username").value;
     const TwitchClient = new tmi.Client({
       options: { debug: true },
