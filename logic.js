@@ -4,6 +4,7 @@ const tmi = require("tmi.js");
 //use twurple instead
 const axios = require("axios");
 const fs = require("fs");
+let pirate = false
 
 window.addEventListener("DOMContentLoaded", () => {
   const connectToTwitch = () => {
@@ -29,10 +30,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
       // Check if the message starts with "!ai" here
       if (message.startsWith("!ai")) {
+        if (message.startsWith("!aipirate")) {
+          pirate = true
+        }
         var twitchMessage = message.substring(message.indexOf(" ") + 1);
 
         // Read the CSV file and split the contents on the comma character
-        console.log("logging + " + twitchMessage)
         
         try {
         const csv = fs.readFileSync("stoplist.csv", "utf8").split(",");
@@ -52,7 +55,9 @@ window.addEventListener("DOMContentLoaded", () => {
         console.log("No word filter found!")
       }
         
-
+        if (pirate) {
+          twitchMessage = twitchMessage+"- talk to me as a pirate."
+        }
         // Set the model to use for completion
         const model = "text-davinci-003";
 
@@ -112,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
             // Handle any errors that occurred in the request
             console.error(error);
           });
-      
+      pirate = false
   }});
   };
   document.getElementById("tmilink").addEventListener("click", function () {
