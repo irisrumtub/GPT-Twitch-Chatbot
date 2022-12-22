@@ -5,7 +5,6 @@ const tmi = require("tmi.js");
 const axios = require("axios");
 const fs = require("fs");
 
-//open links in default sys browser
 window.addEventListener("DOMContentLoaded", () => {
   const connectToTwitch = () => {
     let channelName = document.getElementById("channel").value;
@@ -33,6 +32,9 @@ window.addEventListener("DOMContentLoaded", () => {
         var twitchMessage = message.substring(message.indexOf(" ") + 1);
 
         // Read the CSV file and split the contents on the comma character
+        console.log("logging + " + twitchMessage)
+        
+        try {
         const csv = fs.readFileSync("stoplist.csv", "utf8").split(",");
         if (csv[csv.length - 1] === '') {
           csv.pop();
@@ -40,10 +42,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // Check if the given string contains any of the values from the CSV file
         const containsValue = csv.some((value) => twitchMessage.includes(value));
+
         if (containsValue) {
           TwitchClient.say(channel, "the message contains a naughty word.")
-        } 
-        else {
+          return;
+        }
+      }
+      catch (error) {
+        console.log("No word filter found!")
+      }
+        
 
         // Set the model to use for completion
         const model = "text-davinci-003";
@@ -104,18 +112,17 @@ window.addEventListener("DOMContentLoaded", () => {
             // Handle any errors that occurred in the request
             console.error(error);
           });
-      }
+      
   }});
   };
   document.getElementById("tmilink").addEventListener("click", function () {
     let active_hotspot_id = localStorage.getItem("active_hotspot_id");
-    const reply = ipc.sendSync("tmiclicked", active_hotspot_id);
-    //maybe send async
+    ipc.send("tmiclicked", active_hotspot_id);
   });
+  
   document.getElementById("ailink").addEventListener("click", function () {
     let active_hotspot_id = localStorage.getItem("active_hotspot_id");
-    const reply = ipc.sendSync("aiclicked", active_hotspot_id);
-    //maybe send async
+    ipc.send("aiclicked", active_hotspot_id);
   });
 
   document
