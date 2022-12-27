@@ -17,10 +17,10 @@ window.addEventListener("DOMContentLoaded", () => {
       
       options: { debug: true },
       identity: {
-        username: username,
+        username: username.toLowerCase(),
         password: oauthToken,
       },
-      channels: [channelName],
+      channels: [channelName.toLowerCase()],
       
     });
     
