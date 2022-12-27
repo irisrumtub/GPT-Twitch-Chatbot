@@ -14,18 +14,33 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("submit").innerHTML = "connected"
     let username = document.getElementById("username").value;
     const TwitchClient = new tmi.Client({
+      
       options: { debug: true },
       identity: {
         username: username,
         password: oauthToken,
       },
       channels: [channelName],
+      
     });
-
+    
     //connect and get twitch message
-    TwitchClient.connect();
+    TwitchClient.connect().then(
+      function(result) {
+        // this function is called if the promise is resolved
+        //TODO green "connected" button
+        //TODO lock connect button
+        console.log("success");
+      },
+      function(error) {
+        // this function is called if the promise is rejected
+        console.error("not success");
+      }
+    );
+
     TwitchClient.on("message", (channel, tags, message, self) => {
       // Ignore echoed messages.
+    
       if (self) return;
 
       // Check if the message starts with "!ai" here
@@ -52,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
       catch (error) {
         console.log("No word filter found!")
       }
-        
+      
 
         // Set the model to use for completion
         const model = "text-davinci-003";
@@ -113,6 +128,7 @@ window.addEventListener("DOMContentLoaded", () => {
             // Handle any errors that occurred in the request
             console.error(error);
           });
+          
       
   }});
   };
@@ -129,5 +145,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("submit")
     .addEventListener("click", () => connectToTwitch());
-  document.getElementById("disconnect").addEventListener("click", () => location.reload())
+  document.getElementById("disconnect").addEventListener("click", () => location.reload()) //instead of reload do TwitchClient.disconnect() and lock the button
+  //not on click but instead on connection. After disconnecting unlock connect button
 });
+
