@@ -6,52 +6,66 @@
   <body>
     <div class="maincontainer">
       <div class="formcontainer">
-        <h1>Twitch AI chat bot</h1>
-        <p>
-          1. to get OAuth key go to
-          <a id="tmilink" href="#">https://twitchapps.com/tmi/</a>, connect it
-          to twitch and copy the value of oauth key
-        </p>
-        <p>
-          2. to get AI key go to
-          <a id="ailink" href="#">https://beta.openai.com/account/api-keys</a>,
-          press "Create new secret key" and put it into "AI" key here
-        </p>
-        <p style="color: red">DO NOT SHARE THESE KEYS WITH ANYONE!</p>
         <form id="oauth-form">
-          <label for="username">your username (lowercase)</label><br />
-          <input type="text" id="username" name="username" /><br />
-          <label for="channel">twitch channel name (lowercase)</label><br />
-          <input type="text" id="channel" name="channel" /><br />
-          <label for="oauth">oauth key</label><br />
-          <input type="text" id="oauth" name="oauth" /><br />
-          <label for="aiKey">AI key.</label><br />
-          <input type="text" id="aiKey" name="aiKey" /><br />
+          <div class="showPass">
+          Show keys:
+          <input type="checkbox" id="password-toggle"> 
+          </div>
+          <label for="username">Your username:</label>
+          <input type="text" id="username" name="username" />
+          <label for="channel">Twitch channel to load bot to:</label>
+          <input type="text" id="channel" name="channel" />
+          <label for="oauth">TMI oauth key:</label>
+          <input type="password" id="oauth" name="oauth" />
+          <label for="aiKey">OpenAI api key:</label>
+          <input type="password" id="aiKey" name="aiKey" />
           <label for="tokens"
-            >amount of tokens per request (one token is roughly 4 chars in
-            english)</label
-          ><br />
-          <input type="text" id="tokens" name="tokens" /><br />
-          <label for="timeout">timeout in seconds between messages</label><br />
-          <input type="text" id="timeout" name="timeout" /><br />
+            >Amount of tokens per request <br>* one token is roughly 4 chars in
+            english<br>* twitch chat message is limited by 500 chars</label
+          >
+          <input type="number" id="tokens" name="tokens" value="200" min="0"/>
+          <!-- <label for="timeout">timeout in seconds between messages</label>
+          <input type="number" id="timeout" name="timeout" /> -->
         </form>
         <div class="CDbuttons">
           <button value="start" id="submit">connect</button>
           <button value="disconnect" id="disconnect">disconnect</button>
-        </div>
+        </div>  
         <div class="CDbuttons">
           <button id="saveCreds">save credentials</button>
           <button id="loadCreds">load credentials</button>
+          
         </div>
       </div>
       <div class="features">
-        <label for="wordlist"
-          >Add a csv with words or phrases that you wish not to be passed to the
-          AI</label
+        <h1>Twitch AI chat bot</h1>
+        <p>
+          1. to get TMI oauth key go to
+          <a id="tmilink" href="#">https://twitchapps.com/tmi/</a>, connect it
+          to twitch and copy the value of oauth key
+        </p>
+        <p>
+          2. to get OpenAI api key go to
+          <a id="ailink" href="#">https://beta.openai.com/account/api-keys</a>,
+          press "Create new secret key" and put it into "AI" key here
+        </p>
+        <p class="tooltip" help="The file should contain exact words and phrases with no spaces between them and separated by comma like:
+
+blue,adam's apple,b0rder-box
+
+once you've loaded the file it is stored in root directory of the bot as 'stoplist.csv' and you don't have to load it again. You can edit file manually." for="wordlist"
+          >OPTIONAL:add a csv with words or phrases that you wish not to be passed to the
+          AI. Hover here to get example.<br></p
         >
-        <input id="wordlist" type="file" accept=".csv" />
-        <button id="addWords">add words to the list</button>
+        <div class="wordlist-container">
+          <input id="wordlist" type="file" accept=".csv" />
+          <button id="addWords">add words to the list</button>
+        </div>
         <div id="loadComplete"></div>
+        <div class="statuses">
+          <p>OpenAI status:</div>
+          <div id="aiStatus">Waiting for request to be performed.</div>
+        </div>
       </div>
     </div>
     <script>
@@ -63,5 +77,16 @@
     <script>
       require("./banwords.js");
     </script>
+    
+<script>
+  let oauthInput = document.getElementById('oauth');
+  let aiKeyInput = document.getElementById('aiKey');
+  let toggle = document.getElementById('password-toggle');
+
+  toggle.addEventListener('change', function() {
+    oauthInput.type = this.checked ? 'text' : 'password';
+    aiKeyInput.type = this.checked ? 'text' : 'password';
+  });
+</script>
   </body>
 </html>

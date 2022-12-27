@@ -7,11 +7,15 @@ save.addEventListener('click', (event) => {
   const channel = document.getElementById('channel').value;
   const oauth = document.getElementById('oauth').value;
   const aiKey = document.getElementById('aiKey').value;
+  const tokens = document.getElementById('tokens').value;
+  const timeout = document.getElementById('timeout').value
   const config = {
     username,
     channel,
     oauth,
-    aiKey
+    aiKey,
+    tokens,
+    timeout
   };
   fs.writeFileSync('config', JSON.stringify(config));
 });
@@ -27,6 +31,8 @@ try {
   document.getElementById('channel').value = config.channel;
   document.getElementById('oauth').value = config.oauth;
   document.getElementById('aiKey').value = config.aiKey;
+  document.getElementById('tokens').value = config.tokens;
+  document.getElementById('timeout').value = config.timeout;
 } catch (error) {
   // File does not exist or JSON string is invalid
   console.log('No valid config found');

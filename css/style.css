@@ -1,106 +1,184 @@
-body {
-  font-family: sans-serif;
-  background-color: #f4f4f4;
+::-webkit-scrollbar {
+  display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
   margin: 0;
-  padding: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.showPass {
+  position: absolute;
+  left: 350px;
+  top: 27px;
+  z-index:2;
+}
+/* [type="checkbox"]{
+  position: relative;
+  bottom: 18px;
+  left: 130px;
+
+} */
+p a {
+  color: rgba(255, 255, 255, 0.6) !important
+}
+.tooltip {
+  position: relative;
+}
+
+.tooltip[help]:hover:after {
+  content: attr(help);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+  padding: 4px 8px;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  white-space: pre-wrap;
+  z-index: 1;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  background-color: #222;
 }
 
 .maincontainer {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 5px;
+  display: flex;
+  align-items:flex-start;
+  justify-content: center;
+  height: 300px;
 }
 
 .formcontainer {
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
-  text-align: center;
-}
-
-.formcontainer h1 {
-  font-size: 30px;
-  margin: 0 0 20px;
-  font-weight: bold;
-}
-
-.formcontainer p {
-  font-size: 12px;
-  margin: 0 0 20px;
-  line-height: 1.2;
-}
-
-.formcontainer a {
-  color: blue;
-  text-decoration: none;
-}
-
-.formcontainer label {
-  margin-top: 5px;
-  display: block;
-  font-size: 12px;
-  margin-bottom: 0px;
-}
-
-.formcontainer input{
   width: 100%;
-  padding: 5px 0px;
-  padding-top: 0px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
   box-sizing: border-box;
-  text-align: center;
-  font-size: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.formcontainer label {
+  display: block;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.formcontainer input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9em;
+  color:#fff
+}
+.formcontainer input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9em;
+  color:#fff
+}
+.formcontainer input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9em;
+  color:#fff
+}
+
+.formcontainer input[type="text"]:focus {
+  background-color: #ddd;
+  outline: none;
+  color: black;
 }
 
 .CDbuttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .CDbuttons button {
-  width: 130px; 
-  height: 45px;
-  padding: 5px 20px;
-  background-color: #0077cc;
-  color: white;
+  width: 45%;
+  background-color: #00b8d4;
+  color: rgba(255, 255, 255, 1);
+  padding: 10px;
+  margin: 8px 0;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
   cursor: pointer;
+  font-size: 0.9em;
 }
 
 .CDbuttons button:hover {
-  background-color: #0066b3;
+  background-color: #0052cc;
 }
 
 .features {
-  margin-top: 40px;
+  padding-left: 15px;
+  margin-top: 20px;
+}
+
+.features h1{
+  text-align: center;
+}
+
+.features p{
   text-align: left;
 }
 
 .features label {
-  display: block;
-  font-size: 16px;
+  font-size: 1em;
   margin-bottom: 10px;
+}
+.wordlist-container {
+  text-align: center;
+  margin-top:10px;
 }
 
 .features input[type="file"] {
-  margin-bottom: 20px;
+  font-size: 0.9em;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 100%;
+  color: black;
 }
 
 .features button {
-  padding: 10px 20px;
-  background-color: #0077cc;
-  color: white;
+  margin-left: 10px;
+  width: 20%;
+  background-color: #00b8d4;
+  color: rgba(255, 255, 255, 1);;
+  padding: 10px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
   cursor: pointer;
+  font-size: 0.9em;
+  height: 100%;
 }
 
 .features button:hover {
-  background-color: #0066b3;
+  background-color: #0052cc;
+}
+#loadComplete {
+  margin-top: 10px;
+  font-size: 1em;
 }
