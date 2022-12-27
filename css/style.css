@@ -1,29 +1,106 @@
 body {
-  height: 487px;
-  width: 853px;
-  background-repeat: no-repeat;
-  background-size: 853px 487px;
-}
-
-button {
-  margin: 10px;
-  background-color: #D3D3D3;
-  padding: 5px;
-  border-radius: 50px;
-  border: 1px solid grey;
-}
-button:hover {
-  filter: brightness(50%);
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 .maincontainer {
-  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 5px;
 }
 
 .formcontainer {
-  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+  text-align: center;
+}
+
+.formcontainer h1 {
+  font-size: 30px;
+  margin: 0 0 20px;
+  font-weight: bold;
+}
+
+.formcontainer p {
+  font-size: 12px;
+  margin: 0 0 20px;
+  line-height: 1.2;
+}
+
+.formcontainer a {
+  color: blue;
+  text-decoration: none;
+}
+
+.formcontainer label {
+  margin-top: 5px;
+  display: block;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
+.formcontainer input{
+  width: 100%;
+  padding: 5px 0px;
+  padding-top: 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 12px;
 }
 
 .CDbuttons {
   display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.CDbuttons button {
+  width: 130px; 
+  height: 45px;
+  padding: 5px 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.CDbuttons button:hover {
+  background-color: #0066b3;
+}
+
+.features {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.features label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.features input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.features button {
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.features button:hover {
+  background-color: #0066b3;
 }

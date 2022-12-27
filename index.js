@@ -5,7 +5,7 @@ function createWindow () {
   // Create the browser window with the `nodeIntegration` option enabled.
   const win = new BrowserWindow({
     width: 1000,
-    height: 600,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
