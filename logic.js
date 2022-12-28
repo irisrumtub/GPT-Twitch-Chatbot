@@ -85,10 +85,10 @@ window.addEventListener("DOMContentLoaded", () => {
         let tokensHTML = Number(document.getElementById("tokens").value);
         if (isNaN(tokensHTML) === false) {
           tokens = tokensHTML;
-          console.log("tokens are: " + tokens);
+          //console.log("tokens are: " + tokens);
         } else {
           tokens = 200;
-          console.log("tokens are: " + tokens);
+          //console.log("tokens are: " + tokens);
         }
 
         
