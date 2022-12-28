@@ -81,6 +81,7 @@ window.addEventListener("DOMContentLoaded", () => {
         // Set the model to use for completion
         const model = "text-davinci-003";
         let tokens = "";
+        //maybe empty string gets Number'd to zero and therefore not a NAN?
         let tokensHTML = Number(document.getElementById("tokens").value);
         if (isNaN(tokensHTML) === false) {
           tokens = tokensHTML;
@@ -91,7 +92,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         
-        let timeout = document.getElementById("timeout").value;
+        // let timeout = document.getElementById("timeout").value;
         let aiKey = document.getElementById("aiKey").value;
         axios
           .post(
@@ -113,6 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
           .then((response) => {
             // The completed text will be in the `response.data.choices[0].text` property
             const result = response.data.choices[0].text;
+            console.log(response)
             lastGPTResponse.innerHTML =
               "<p style='color:green'>AI is working as intended</p>";
             // console.log(result)
@@ -141,7 +143,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 // Increment the message index
                 messageIndex++;
                 // Wait 1s before sending the next message
-                setTimeout(sendNextMessage, 3000);
+                setTimeout(sendNextMessage, 4000);
               }
             };
             sendNextMessage();
