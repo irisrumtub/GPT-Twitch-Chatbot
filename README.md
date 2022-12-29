@@ -8,7 +8,7 @@ You can either run pre-built latest executable for windows or run from source co
 ## Requirements
 
 * A Twitch account
-* An OpenAI API key (available for free now, just register at their website and go to account -> api keys)
+* An OpenAI API key (register at their website and go to account -> api keys, read disclaimer down below for more info)
 
 
 ## Installation
