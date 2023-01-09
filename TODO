@@ -1,0 +1,2 @@
+// make bot only process one request at a time if timeout is set. 
+// Currently bot will process every request after initial request before the answer to initial request comes through

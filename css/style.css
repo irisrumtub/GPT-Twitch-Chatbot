@@ -39,9 +39,11 @@ p a {
   padding: 4px 8px;
   background-color: black;
   color: white;
-  font-size: 12px;
+  font-size: 16px;
   white-space: pre-wrap;
   z-index: 1;
+  border-radius: 5%;
+  border: 2px solid;
 }
 
 body {
@@ -181,4 +183,7 @@ body {
 #loadComplete {
   margin-top: 10px;
   font-size: 1em;
+}
+.timeouttip[help]:hover:after {
+  width:800%;
 }
