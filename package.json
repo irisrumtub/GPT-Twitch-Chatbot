@@ -4,7 +4,8 @@
   "description": "twitch chat bot that uses GPT-3 to reply to chat messages",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder build --win portable"
   },
   "author": "irisrumtub <irisrumtub@wearehackerone.com>",
   "license": "ISC",
