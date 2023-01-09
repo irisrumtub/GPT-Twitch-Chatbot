@@ -8,33 +8,34 @@
       <div class="formcontainer">
         <form id="oauth-form">
           <div class="showPass">
-          Show keys:
-          <input type="checkbox" id="password-toggle"> 
+            Show keys:
+            <input type="checkbox" id="password-toggle" />
           </div>
           <label for="username">Your username:</label>
-          <input type="text" id="username" name="username" />
+          <input type="text" class="lockable" id="username" name="username" />
           <label for="channel">Twitch channel to load bot to:</label>
-          <input type="text" id="channel" name="channel" />
+          <input type="text" class="lockable" id="channel" name="channel" />
           <label for="oauth">TMI oauth key:</label>
-          <input type="password" id="oauth" name="oauth" />
+          <input type="password" class="lockable" id="oauth" name="oauth" />
           <label for="aiKey">OpenAI api key:</label>
-          <input type="password" id="aiKey" name="aiKey" />
+          <input type="password" class="lockable" id="aiKey" name="aiKey" />
+          <div class="unlockable">
           <label for="tokens"
-            >Amount of tokens per request <br>* one token is roughly 4 chars in
-            english<br>* twitch chat message is limited by 500 chars</label
+            >Amount of tokens per request <br />* one token is roughly 4 chars
+            in english<br />* twitch chat message is limited by 500 chars</label
           >
-          <input type="number" id="tokens" name="tokens" value="200" min="0"/>
-          <!-- <label for="timeout">timeout in seconds between messages</label>
-          <input type="number" id="timeout" name="timeout" /> -->
+          <input type="number" id="tokens" name="tokens" value="200" min="0" />
+          <label for="timeout">timeout in seconds between messages <span style="color:#00b8d4" help="This feature is intended to prevent flooding chat with messages from AI. If this field is not empty, bot will wait given amount of seconds before it will start reading chat again." class="tooltip timeouttip">[?]</span></label>
+          <input type="number" id="timeout" name="timeout" value="0" min="0"/>
+        </div>
         </form>
         <div class="CDbuttons">
           <button value="start" id="submit">connect</button>
           <button value="disconnect" id="disconnect">disconnect</button>
-        </div>  
+        </div>
         <div class="CDbuttons">
           <button id="saveCreds">save credentials</button>
           <button id="loadCreds">load credentials</button>
-          
         </div>
       </div>
       <div class="features">
@@ -49,25 +50,41 @@
           <a id="ailink" href="#">https://beta.openai.com/account/api-keys</a>,
           press "Create new secret key" and put it into "AI" key here
         </p>
-        <p class="tooltip" help="The file should contain exact words and phrases with no spaces between them and separated by comma like:
+        <p
+          class="tooltip"
+          help="The file should contain exact words and phrases with no spaces between them and separated by comma like:
 
 blue,adam's apple,b0rder-box
 
-once you've loaded the file it is stored in root directory of the bot as 'stoplist.csv' and you don't have to load it again. You can edit file manually." for="wordlist"
-          >OPTIONAL:add a csv with words or phrases that you wish not to be passed to the
-          AI. Hover here to get example.<br></p
+once you've loaded the file it is stored in root directory of the bot as 'stoplist.csv' and you don't have to load it again. You can edit file manually."
+          for="wordlist"
         >
+          OPTIONAL:add a csv with words or phrases that you wish not to be
+          passed to the AI. Hover here to get example.<br />
+        </p>
         <div class="wordlist-container">
           <input id="wordlist" type="file" accept=".csv" />
           <button id="addWords">add words to the list</button>
         </div>
         <div id="loadComplete"></div>
         <div class="statuses">
-          <p>OpenAI status:</div>
-          <div id="aiStatus">Waiting for request to be performed.</div>
+          <p>OpenAI status:</p>
         </div>
+
+        <div id="aiStatus">Waiting for request to be performed.</div>
       </div>
     </div>
+
+    <script>
+      let oauthInput = document.getElementById("oauth");
+      let aiKeyInput = document.getElementById("aiKey");
+      let toggle = document.getElementById("password-toggle");
+
+      toggle.addEventListener("change", function () {
+        oauthInput.type = this.checked ? "text" : "password";
+        aiKeyInput.type = this.checked ? "text" : "password";
+      });
+    </script>
     <script>
       require("./logic.js");
     </script>
@@ -77,16 +94,6 @@ once you've loaded the file it is stored in root directory of the bot as 'stopli
     <script>
       require("./banwords.js");
     </script>
-    
-<script>
-  let oauthInput = document.getElementById('oauth');
-  let aiKeyInput = document.getElementById('aiKey');
-  let toggle = document.getElementById('password-toggle');
-
-  toggle.addEventListener('change', function() {
-    oauthInput.type = this.checked ? 'text' : 'password';
-    aiKeyInput.type = this.checked ? 'text' : 'password';
-  });
-</script>
+  
   </body>
 </html>
