@@ -49,15 +49,6 @@ if (isNaN(tokensHTML) || tokensHTML <= 10) {
 } else {
   tokens = tokensHTML;
 }
-
-    // if (isNaN(tokensHTML) === false) {
-    //     if(tokensHTML === 0){
-    //         tokens = 200
-    //     } 
-    //   tokens = tokensHTML;
-    // } else {
-    //   tokens = 200;
-    // }
     let aiKey = document.getElementById("aiKey").value;
     axios
       .post(
